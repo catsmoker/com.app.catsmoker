@@ -69,7 +69,7 @@ Game Unlocker is a tool designed to unlock higher FPS in games by spoofing your 
 
 2. **Install the APK**
 
-    - Open Xposed/Lsposed Manager.
+    - Open [Xposed](https://github.com/ElderDrivers/EdXposed)/[Lsposed](https://github.com/LSPosed/LSPosed) Manager.
     - Go to the `Modules` section.
     - Search for `catsmoker` and enable the module.
     - The supported games are automatically added to the scope.
