@@ -7,44 +7,17 @@ WebViewApp is a simple Android app that displays a web page using a `WebView` co
 - Displays a web page within the app.
 - Fullscreen `WebView` for an immersive experience.
 
-## Getting Started
-
-### Prerequisites
-
-- Android Studio
-- Android SDK
-- Basic knowledge of Java and Android development
-
-### Installation
-
-1. **Clone the Repository**
-
-    ```bash
-    git clone https://github.com/catsmoker/com.app.catsmoker.git
-    ```
-
-2. **Open in Android Studio**
-
-    - Open Android Studio.
-    - Select `Open an existing Android Studio project`.
-    - Navigate to the cloned repository folder and open it.
-
-3. **Build and Run**
-
-    - Connect your Android device or start an emulator.
-    - Click on the `Run` button in Android Studio to build and run the app.
-
 ---
 
 # Game Unlocker
 
-Game Unlocker is a tool designed to unlock higher FPS in games by spoofing your device as a different model for specific games.
+Game Unlocker is a utility aimed at unlocking higher FPS in games by spoofing your device as a different model for specific games.
 
 ## Features
 
-- Device spoofing for enhanced gaming experiences.
-- Compatibility with a wide range of popular gaming applications.
-- Easy installation and no configuration required.
+- Device spoofing for improved gaming performance.
+- Compatible with a wide variety of popular gaming apps.
+- Simple installation with no configuration needed.
 
 ## Table of Contents
 
@@ -59,7 +32,7 @@ Game Unlocker is a tool designed to unlock higher FPS in games by spoofing your 
 ### Prerequisites
 
 - Ensure that your Android device is rooted.
-- Install the Xposed or Lsposed Framework on your device.
+- Install the [Xposed](https://github.com/ElderDrivers/EdXposed) or [Lsposed](https://github.com/LSPosed/LSPosed) Framework on your device.
 
 ### Installation
 
