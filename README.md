@@ -1,23 +1,13 @@
-# WebViewApp
+# Catsmoker App
 
-WebViewApp is a simple Android app that displays a web page using a `WebView` component. The web page shown is hosted at [https://catsmoker.github.io](https://catsmoker.github.io).
-
-## Features
-
-- Displays a web page within the app.
-- Fullscreen `WebView` for an immersive experience.
-
----
-
-# Game Unlocker
-
-Game Unlocker is a utility aimed at unlocking higher FPS in games by spoofing your device as a different model for specific games.
+Catsmoker is a simple Android app that displays a web page using a `WebView` component. The web page shown is hosted at [https://catsmoker.github.io](https://catsmoker.github.io). It also serves as a utility aimed at unlocking higher FPS in games by spoofing your device as a different model for specific games.
 
 ## Features
 
-- Device spoofing for improved gaming performance.
+- Spoof device information for improved gaming performance in supported games.
 - Compatible with a wide variety of popular gaming apps.
 - Simple installation with no configuration needed.
+- Displays a web page within the app.
 
 ## Table of Contents
 
@@ -37,11 +27,9 @@ Game Unlocker is a utility aimed at unlocking higher FPS in games by spoofing yo
 ### Installation
 
 1. **Download the Module**
-
     - Download the `catsmoker` module from the releases section of the repository.
 
 2. **Install the APK**
-
     - Open [Xposed](https://github.com/ElderDrivers/EdXposed)/[Lsposed](https://github.com/LSPosed/LSPosed) Manager.
     - Go to the `Modules` section.
     - Search for `catsmoker` and enable the module.
