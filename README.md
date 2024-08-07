@@ -20,7 +20,7 @@ WebViewApp is a simple Android app that displays a web page using a `WebView` co
 1. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/catsmoker/WebViewApp.git
+    git clone https://github.com/catsmoker/com.app.catsmoker.git
     ```
 
 2. **Open in Android Studio**
