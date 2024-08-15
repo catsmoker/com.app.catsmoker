@@ -2,6 +2,7 @@
 
 Catsmoker is a simple Android app that displays a web page using a `WebView` component. The web page shown is hosted at [https://catsmoker.github.io](https://catsmoker.github.io). It also serves as a utility aimed at unlocking higher FPS in games by spoofing your device as a different model for specific games.
 
+FOR XSPOSED MODULE REPO GO TO: https://github.com/Xposed-Modules-Repo/com.app.catsmoker
 ## Features
 
 - Spoof device information for improved gaming performance in supported games.
