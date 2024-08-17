@@ -1,8 +1,8 @@
-# Catsmoker App
+## Catsmoker APP
 
 Catsmoker is a simple Android app that displays a web page using a `WebView` component. The web page shown is hosted at [https://catsmoker.github.io](https://catsmoker.github.io). It also serves as a utility aimed at unlocking higher FPS in games by spoofing your device as a different model for specific games.
 
-FOR XSPOSED MODULE REPO GO TO: https://github.com/Xposed-Modules-Repo/com.app.catsmoker
+FORE MOR INFO GO TO: https://github.com/catsmoker/com.app.catsmoker
 ## Features
 
 - Spoof device information for improved gaming performance in supported games.
@@ -39,7 +39,7 @@ FOR XSPOSED MODULE REPO GO TO: https://github.com/Xposed-Modules-Repo/com.app.ca
 
 ## Usage
 
-Once you've installed and activated the Game Unlocker module, it will automatically spoof your device information for supported gaming applications. There's no additional configuration required. Simply force stop and open the games you want to play, and enjoy the benefits of device spoofing.
+Once you've installed and activated the catsmoker module, it will automatically spoof your device information for supported gaming applications. There's no additional configuration required. Simply force stop and open the games you want to play, and enjoy the benefits of device spoofing.
 
 You can untick the games you don't want to spoof in the module scope. Force stop and relaunch are required.
 
@@ -49,6 +49,7 @@ You can untick the games you don't want to spoof in the module scope. Force stop
 
 - **Activision Games**
   - `com.activision.callofduty.shooter`
+  - `com.activision.callofduty.warzone`
   - `com.garena.game.codm`
   - `com.tencent.tmgp.kr.codm`
   - `com.vng.codmvn`
