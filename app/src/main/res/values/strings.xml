@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Catsmoker</string>
+	<string name="xposed_description">Unlock higher FPS by spoofing your device model for specific games</string>
+	<string-array name="scope">
+		// activision games
+		<item>com.activision.callofduty.shooter</item>
+		<item>com.activision.callofduty.warzone</item>
+		<item>com.garena.game.codm</item>
+		<item>com.tencent.tmgp.kr.codm</item>
+		<item>com.vng.codmvn</item>
+		<item>com.tencent.tmgp.cod</item>
+		// Tencent Games
+		<item>com.tencent.ig</item>
+		<item>com.pubg.imobile</item>
+		<item>com.pubg.krmobile</item>
+		<item>com.rekoo.pubgm</item>
+		<item>com.vng.pubgmobile</item>
+		<item>com.tencent.tmgp.pubgmhd</item>
+		// Garena Games
+		<item>com.dts.freefiremax</item>
+		<item>com.dts.freefireth</item>
+		// Epic Games
+		<item>com.epicgames.fortnite</item>
+	</string-array>
+</resources>

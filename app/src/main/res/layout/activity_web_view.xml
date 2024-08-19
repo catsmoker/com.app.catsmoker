@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"><!-- Animated Progress Line --><ProgressBar
+    android:id="@+id/progressBar"
+    android:layout_width="match_parent"
+    android:layout_height="4dp"
+    android:indeterminate="true"
+    android:progressDrawable="@drawable/progress_line"
+    style="?android:attr/progressBarStyleHorizontal"/><!-- WebView to display web content --><WebView
+    android:id="@+id/webView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+</LinearLayout>
