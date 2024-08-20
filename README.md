@@ -1,8 +1,9 @@
-## Catsmoker APP
+# Catsmoker App
 
 Catsmoker is a simple Android app that displays a web page using a `WebView` component. The web page shown is hosted at [https://catsmoker.github.io](https://catsmoker.github.io). It also serves as a utility aimed at unlocking higher FPS in games by spoofing your device as a different model for specific games.
 
-FORE MOR INFO GO TO: https://github.com/Xposed-Modules-Repo/com.app.catsmoker
+For more information, visit the [GitHub repository](https://github.com/Xposed-Modules-Repo/com.app.catsmoker).
+
 ## Features
 
 - Spoof device information for improved gaming performance in supported games.
@@ -23,7 +24,7 @@ FORE MOR INFO GO TO: https://github.com/Xposed-Modules-Repo/com.app.catsmoker
 ### Prerequisites
 
 - Ensure that your Android device is rooted.
-- Install the [Xposed](https://github.com/ElderDrivers/EdXposed) or [Lsposed](https://github.com/LSPosed/LSPosed) Framework on your device.
+- Install the [Xposed](https://github.com/ElderDrivers/EdXposed) or [Lsposed](https://github.com/LSPosed/LSPosed) framework on your device.
 
 ### Installation
 
@@ -31,7 +32,7 @@ FORE MOR INFO GO TO: https://github.com/Xposed-Modules-Repo/com.app.catsmoker
     - Download the `catsmoker` module from the releases section of the repository.
 
 2. **Install the APK**
-    - Open [Xposed](https://github.com/ElderDrivers/EdXposed)/[Lsposed](https://github.com/LSPosed/LSPosed) Manager.
+    - Open [Xposed](https://github.com/ElderDrivers/EdXposed) or [Lsposed](https://github.com/LSPosed/LSPosed) Manager.
     - Go to the `Modules` section.
     - Search for `catsmoker` and enable the module.
     - The supported games are automatically added to the scope.
@@ -39,7 +40,7 @@ FORE MOR INFO GO TO: https://github.com/Xposed-Modules-Repo/com.app.catsmoker
 
 ## Usage
 
-Once you've installed and activated the catsmoker module, it will automatically spoof your device information for supported gaming applications. There's no additional configuration required. Simply force stop and open the games you want to play, and enjoy the benefits of device spoofing.
+Once you've installed and activated the Catsmoker module, it will automatically spoof your device information for supported gaming applications. There's no additional configuration required. Simply force stop and open the games you want to play, and enjoy the benefits of device spoofing.
 
 You can untick the games you don't want to spoof in the module scope. Force stop and relaunch are required.
 
