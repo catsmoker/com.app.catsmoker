@@ -124,7 +124,7 @@ public class MyWebViewActivity extends AppCompatActivity {
     private boolean isInternalUrl(String url) {
         return url.contains("catsmoker.github.io") ||
                 url.contains("github.com") ||
-                url.contains("objects.githubusercontent.com");
+                url.contains("objects.githubusercontent.com") ||
                 url.contains("foxsmoker.blogspot.com");
     }
 
