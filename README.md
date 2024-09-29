@@ -21,28 +21,23 @@ For more information, visit the [GitHub repository](https://github.com/Xposed-Mo
 
 ## Getting Started
 
-### Prerequisites
-
-- Ensure that your Android device is rooted.
-- Install the [Xposed](https://github.com/ElderDrivers/EdXposed) or [Lsposed](https://github.com/LSPosed/LSPosed) framework on your device.
-
 ### Installation
 
-1. **Download the Module**
-    - Download the `catsmoker` module from the releases section of the repository.
-
-2. **Install the APK**
-    - Open [Xposed](https://github.com/ElderDrivers/EdXposed) or [Lsposed](https://github.com/LSPosed/LSPosed) Manager.
-    - Go to the `Modules` section.
-    - Search for `catsmoker` and enable the module.
-    - The supported games are automatically added to the scope.
-    - Force stop the added game manually to take effect.
+- Ensure that your Android device is rooted.
+- install [magisk_ canary](https://github.com/topjohnwu/Magisk/releases/tag/canary-27008) if it’s not already installed.
+- (Optional) Install the [Shamiko](https://github.com/LSPosed/LSPosed.github.io/releases) module to hide root.
+- Install the [LSPosed_mod](https://github.com/mywalkb/LSPosed_mod/releases) module through the Magisk app.
+- Open [LSPosed_mod](https://github.com/mywalkb/LSPosed_mod/releases) Manager.
+- Go to the `Modules` section.
+- Search for `catsmoker` and enable the module.
+- The supported games are automatically added to the scope.
+- Force stop the added game manually to take effect.
 
 ## Usage
 
 Once you've installed and activated the Catsmoker module, it will automatically spoof your device information for supported gaming applications. There's no additional configuration required. Simply force stop and open the games you want to play, and enjoy the benefits of device spoofing.
 
-You can untick the games you don't want to spoof in the module scope. Force stop and relaunch are required.
+You can untick the games you don't want to spoof in the lsposed app. A reboot may be required.
 
 **Note:** Device spoofing may violate the terms of service for some games or apps.
 
