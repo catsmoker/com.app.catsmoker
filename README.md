@@ -63,6 +63,8 @@ You can untick the games you don't want to spoof in the lsposed app. A reboot ma
 - **Epic Games**
   - `com.epicgames.fortnite`
 
+For any additional games you’d like to see supported, please email me the APK name at [email me](mailto:boulhada08@gmail.com).
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
