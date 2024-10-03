@@ -21,17 +21,33 @@ For more information, visit the [GitHub repository](https://github.com/Xposed-Mo
 
 ## Getting Started
 
-### Installation
+### Installation Guide
 
-- Ensure that your Android device is rooted.
-- install [magisk_ canary](https://github.com/topjohnwu/Magisk/releases/tag/canary-27008) if it’s not already installed.
-- (Optional) Install the [Shamiko](https://github.com/LSPosed/LSPosed.github.io/releases) module to hide root.
-- Install the [LSPosed_mod](https://github.com/mywalkb/LSPosed_mod/releases) module through the Magisk app.
-- Open `LSPosed_mod` Manager.
-- Go to the `Modules` section.
-- Search for `catsmoker` and enable the module.
-- The supported games are automatically added to the scope.
-- Force stop the added game manually to take effect.
+1. **Check Root Access**  
+   Ensure that your Android device is rooted. You can verify this using the [Root Checker](https://play.google.com/store/apps/details?id=com.joeykrim.rootcheck&hl=en). If you don't have root access, follow the instructions [here](https://topjohnwu.github.io/Magisk/).
+
+2. **Install Magisk**  
+   Download and install [Magisk Canary](https://github.com/topjohnwu/Magisk/releases/tag/canary-27008) if it's not already installed on your device.
+
+3. **(Optional) Install Shamiko Module**  
+   To hide root, consider installing the [Shamiko](https://github.com/LSPosed/LSPosed.github.io/releases) module.
+
+4. **Install LSPosed_mod Module**  
+   Through the Magisk app, install the [LSPosed_mod](https://github.com/mywalkb/LSPosed_mod/releases) module.
+
+5. **Open LSPosed_mod Manager**  
+   Launch the `LSPosed_mod` Manager.
+
+6. **Enable the Module**  
+   - Navigate to the `Modules` section.
+   - Search for `catsmoker` and enable the module.
+
+7. **Manage Supported Games**  
+   The supported games will be automatically added to the scope.
+
+8. **Force Stop the Game**  
+   Manually force stop the added game to apply the changes.
+
 
 ## Usage
 
