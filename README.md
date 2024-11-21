@@ -81,6 +81,10 @@ You can untick the games you don't want to spoof in the lsposed app. A reboot ma
 
 For any additional games you’d like to see supported, please open an issue with the APK name at [issues](https://github.com/catsmoker/com.app.catsmoker/issues).
 
+## Note
+
+The updates are temporarily on hold due to a lack of devices available for experimentation.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
