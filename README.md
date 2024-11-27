@@ -89,6 +89,8 @@ The updates are temporarily on hold due to a lack of devices available for exper
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+![app](https://github.com/user-attachments/assets/5f0812d4-5636-434c-8ec0-1dd7fc427015)
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any bugs, improvements, or new features.
