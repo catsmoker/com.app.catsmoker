@@ -125,7 +125,7 @@ public class MyWebViewActivity extends AppCompatActivity {
         return url.contains("catsmoker.github.io") ||
                 url.contains("github.com") ||
                 url.contains("objects.githubusercontent.com") ||
-                url.contains("foxsmoker.blogspot.com") ||
+                url.contains("catsmoker-lab.blogspot.com") ||
                 url.contains("catsmoker.pages.dev");
     }
 
