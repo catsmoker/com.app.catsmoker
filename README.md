@@ -25,6 +25,8 @@ For the New Pro version check here: [Store](https://payhip.com/DIGITALCATSTORE)
 
 ## Getting Started
 
+see the tutorial here: https://youtu.be/Ie0vEiQaQek
+
 ### Installation Guide
 
 1. **Check Root Access**  
