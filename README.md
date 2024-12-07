@@ -6,7 +6,7 @@ For more information, visit the [GitHub repository](https://github.com/Xposed-Mo
 
 # Updated Pro Version
 
-For the New Pro version check here: [Store](https://payhip.com/b/ImZeC)
+For the New Pro version check here: [Store](https://payhip.com/DIGITALCATSTORE)
 
 ## Features
 
