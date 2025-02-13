@@ -85,7 +85,7 @@ You can untick the games you don't want to spoof in the lsposed app. A reboot ma
 - **Epic Games**
   - `com.epicgames.fortnite`
 
-- and more...
+- and more...  [see here](https://github.com/catsmoker/com.app.catsmoker/releases/tag/5-1.5)
 
 For any additional games you’d like to see supported, please open an issue with the APK name at [issues](https://github.com/catsmoker/com.app.catsmoker/issues).
 
