@@ -1,6 +1,6 @@
 # Catsmoker App
 
-Catsmoker is a simple Android app that displays a web page using a `WebView` component. The web page shown is hosted at [catsmoker.github.io](https://catsmoker.github.io). It also serves as a utility aimed at unlocking higher FPS in games by spoofing your device as a different model for specific games.
+Catsmoker is a simple Android app that displays a web page using a `WebView` component. The web page shown is hosted at [catsmoker.github.io](https://catsmoker.github.io). It also serves as a utility aimed at unlocking higher FPS in games by spoofing your device as a different model for specific games. and more...
 
 For more information, visit the [GitHub repository](https://github.com/Xposed-Modules-Repo/com.app.catsmoker).
 
@@ -84,6 +84,8 @@ You can untick the games you don't want to spoof in the lsposed app. A reboot ma
   - `com.dts.freefireth`
 - **Epic Games**
   - `com.epicgames.fortnite`
+
+- and more...
 
 For any additional games you’d like to see supported, please open an issue with the APK name at [issues](https://github.com/catsmoker/com.app.catsmoker/issues).
 
