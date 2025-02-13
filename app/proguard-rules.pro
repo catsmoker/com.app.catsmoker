@@ -1,2 +1,4 @@
 -keep class com.app.catsmoker.GameUnlocker
 -keep class com.app.catsmoker.MyWebViewActivity
+-keep class com.app.catsmoker.MainActivity
+-keep class com.app.catsmoker.CrosshairOverlayService

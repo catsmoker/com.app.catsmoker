@@ -14,6 +14,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
@@ -21,8 +22,6 @@ import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +31,6 @@ public class MyWebViewActivity extends AppCompatActivity {
 
     private static final String HOME_URL = "https://catsmoker.github.io/";
     private WebView webView;
-    private FirebaseAnalytics firebaseAnalytics;
     private ProgressBar progressBar;
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -41,19 +39,10 @@ public class MyWebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
-        initializeFirebaseAnalytics();
         initializeViews();
         configureWebView();
         handleBackButton();
         loadWebViewContent();
-    }
-
-    private void initializeFirebaseAnalytics() {
-        try {
-            firebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        } catch (Exception e) {
-            Toast.makeText(this, "Failed to initialize Firebase Analytics", Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void initializeViews() {
@@ -63,15 +52,26 @@ public class MyWebViewActivity extends AppCompatActivity {
 
     @SuppressLint("SetJavaScriptEnabled")
     private void configureWebView() {
+        // Enable hardware acceleration for better performance
         webView.setLayerType(WebView.LAYER_TYPE_HARDWARE, null);
+
+        // WebView settings
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setCacheMode(android.webkit.WebSettings.LOAD_NO_CACHE);
 
+        // Security settings
+        webView.getSettings().setAllowFileAccess(false);
+        webView.getSettings().setAllowContentAccess(false);
+        webView.getSettings().setSafeBrowsingEnabled(true);
+
+        // Set custom clients
         webView.setWebViewClient(new CustomWebViewClient());
         webView.setWebChromeClient(new CustomWebChromeClient());
+
+        // Handle downloads
         webView.setDownloadListener(this::handleDownload);
     }
 
@@ -80,11 +80,16 @@ public class MyWebViewActivity extends AppCompatActivity {
             @Override
             public void handleOnBackPressed() {
                 if (webView.canGoBack()) {
+                    // If the WebView can go back, navigate back
                     webView.goBack();
                 } else if (!HOME_URL.equals(webView.getUrl())) {
+                    // If the current URL is not the home URL, load the home URL
                     webView.loadUrl(HOME_URL);
                 } else {
-                    finish();
+                    // If the current URL is the home URL, navigate to MainActivity
+                    Intent intent = new Intent(MyWebViewActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish(); // Close the current activity
                 }
             }
         };
@@ -125,8 +130,7 @@ public class MyWebViewActivity extends AppCompatActivity {
         return url.contains("catsmoker.github.io") ||
                 url.contains("github.com") ||
                 url.contains("objects.githubusercontent.com") ||
-                url.contains("catsmoker-lab.blogspot.com") ||
-                url.contains("catsmoker.pages.dev");
+                url.contains("catsmoker-lab.blogspot.com");
     }
 
     private void openExternalUrl(String url) {
@@ -135,8 +139,12 @@ public class MyWebViewActivity extends AppCompatActivity {
     }
 
     private void handleDownload(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
-        String fileName = URLUtil.guessFileName(url, contentDisposition, mimetype);
+        if (!isValidUrl(url)) {
+            Toast.makeText(this, "Invalid download URL", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        String fileName = URLUtil.guessFileName(url, contentDisposition, mimetype);
         if (!fileName.contains(".")) {
             fileName += "." + MimeTypeMap.getSingleton().getExtensionFromMimeType(mimetype);
         }
@@ -152,20 +160,13 @@ public class MyWebViewActivity extends AppCompatActivity {
         if (downloadManager != null) {
             downloadManager.enqueue(request);
             Toast.makeText(this, "Download started...", Toast.LENGTH_SHORT).show();
-            logFirebaseEvent("download_file", fileName, mimetype);
         } else {
             Toast.makeText(this, "DownloadManager is unavailable. Cannot download the file.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void logFirebaseEvent(String itemId, String itemName, String contentType) {
-        if (firebaseAnalytics != null) {
-            Bundle bundle = new Bundle();
-            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, itemId);
-            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, itemName);
-            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, contentType);
-            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-        }
+    private boolean isValidUrl(String url) {
+        return url != null && (url.startsWith("http://") || url.startsWith("https://"));
     }
 
     private class CustomWebViewClient extends WebViewClient {
@@ -177,11 +178,11 @@ public class MyWebViewActivity extends AppCompatActivity {
         @Override
         public void onPageFinished(WebView view, String url) {
             progressBar.setVisibility(View.GONE);
-            logFirebaseEvent("web_view_page", url, "web_page");
         }
 
         @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            String url = request.getUrl().toString();
             if (isInternalUrl(url)) {
                 return false;
             } else {

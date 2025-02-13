@@ -1,6 +1,5 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.gms.google-services'
 }
 
 android {
@@ -9,11 +8,11 @@ android {
 
     defaultConfig {
         applicationId "com.app.catsmoker"
-        minSdk 23
+        minSdk 28
         //noinspection OldTargetApi
         targetSdk 34
-        versionCode 3
-        versionName "1.3"
+        versionCode 5
+        versionName "1.5"
 
         // Enable multidex for apps with over 64K methods
         multiDexEnabled true
@@ -52,9 +51,6 @@ android {
 dependencies {
 
     implementation libs.material
-
-    // Firebase and Google Play services dependencies using BOM for version alignment
-    implementation libs.firebase.analytics
 
     // Support for multidex to avoid method limit errors
     implementation libs.multidex
