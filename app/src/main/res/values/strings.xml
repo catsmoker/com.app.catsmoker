@@ -6,6 +6,17 @@
 	<string name="catsmoker">CATSMOKER V1.5</string>
 	<string name="exit_app">Exit App</string>
 	<string name="open_website">Open Website</string>
+	<string name="file_path">path/to/your/file</string>
+	<string name="pubg_package_name">com.tencent.ig</string>
+	<string name="mid_480p">mid_480p_file</string>
+	<string name="q_480p">q_480p_file</string>
+	<string name="mid_540p">mid_540p_file</string>
+	<string name="q_540p">q_540p_file</string>
+	<string name="mid_720p">mid_720p_file</string>
+	<string name="q_720p">q_720p_file</string>
+	<string name="open_edit_quality">Open Edit Quality</string>
+	<string name="open_pubg">Open PUBG</string>
+	<string name="apply">Apply</string>
 	<string-array name="scope">
 		<item>com.activision.callofduty.shooter</item>
 		<item>com.activision.callofduty.warzone</item>

@@ -6,67 +6,43 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@drawable/gradient_background"
-    android:gravity="center">
+    android:gravity="center_horizontal">
 
     <!-- App Title -->
-<TextView
-android:id="@+id/title"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="@string/catsmoker"
-android:textSize="32sp"
-android:textColor="@color/white"
-android:textStyle="bold"
-android:layout_marginBottom="32dp"
-android:fontFamily="sans-serif-condensed" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/catsmoker"
+        android:textSize="32sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="sans-serif-condensed" />
 
-    <!-- Button to toggle GameUnlocker -->
+    <!-- Buttons -->
     <Button
         android:id="@+id/btnGameUnlocker"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/button_background"
-        android:stateListAnimator="@null"
-        android:text="@string/activate_game_unlocker"
-        android:textColor="@color/purple"
-        android:textSize="18sp"
-        tools:ignore="TextSizeCheck" />
+        style="@style/CustomButton"
+        android:text="@string/activate_game_unlocker" />
 
-    <!-- Button to toggle Crosshair Overlay -->
     <Button
         android:id="@+id/btnCrosshair"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/button_background"
-        android:stateListAnimator="@null"
-        android:text="@string/activate_crosshair"
-        android:textColor="@color/purple"
-        android:textSize="18sp"
-        tools:ignore="TextSizeCheck" />
+        style="@style/CustomButton"
+        android:text="@string/activate_crosshair" />
 
-    <!-- Button to open WebView -->
-<Button
-android:id="@+id/btnWebView"
-android:layout_width="300dp"
-android:layout_height="60dp"
-android:text="@string/open_website"
-android:textSize="18sp"
-android:textColor="@color/purple"
-android:background="@drawable/button_background"
-android:layout_marginBottom="16dp"
-android:stateListAnimator="@null" />
+    <Button
+        android:id="@+id/btnWebView"
+        style="@style/CustomButton"
+        android:text="@string/open_website" />
 
-    <!-- Button to exit the app -->
-<Button
-android:id="@+id/btnExit"
-android:layout_width="300dp"
-android:layout_height="60dp"
-android:text="@string/exit_app"
-android:textSize="18sp"
-android:textColor="@color/purple"
-android:background="@drawable/button_background"
-android:stateListAnimator="@null" />
+    <Button
+        android:id="@+id/btnEditQuality"
+        style="@style/CustomButton"
+        android:text="@string/open_edit_quality" />
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/btnExit"
+        style="@style/CustomButton"
+        android:text="@string/exit_app" />
+
+</LinearLayout>
