@@ -6,7 +6,7 @@ For more information, visit the [GitHub repository](https://github.com/Xposed-Mo
 
 # Updated Pro Version
 
-For the New Pro version check here: [Store](https://catsmoker.mysellix.io/)
+For the New Pro version check here: [Store](catsmoker.github.io)
 
 ## Features
 
