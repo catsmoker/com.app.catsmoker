@@ -1,9 +1,20 @@
+# libs.versions.toml
 [versions]
-api = "82"
-material = "1.12.0"
+material = "1.11.0"
 multidex = "2.0.1"
+xposed-api = "82"
+appcompat = "1.6.1"
+constraintlayout = "2.1.4"
+junit = "4.13.2"
+test-runner = "1.5.2"
+espresso-core = "3.5.1"
 
 [libraries]
-api = { module = "de.robv.android.xposed:api", version.ref = "api" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
 multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
+xposed-api = { module = "de.robv.android.xposed:api", version.ref = "xposed-api" }
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+junit = { module = "junit:junit", version.ref = "junit" }
+test-runner = { module = "androidx.test:runner", version.ref = "test-runner" }
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
