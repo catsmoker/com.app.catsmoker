@@ -1,71 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Catsmoker</string>
-	<string name="xposed_description">Unlock higher FPS by spoofing your device model for specific games</string>
+    <!-- App Basics -->
+    <string name="app_name">Catsmoker</string>
+    <string name="catsmoker_v1_5">Catsmoker v1.5</string>
+    <string name="xposed_description">Unlock higher FPS by spoofing your device model for specific games</string>
+
+    <!-- Titles -->
+    <string name="enable_crosshair_overlay">Enable Crosshair Overlay</string>
+    <string name="about_catsmoker">About Catsmoker</string>
+    <string name="root_amp_lsposed_setup"><![CDATA[Root & LSPosed Setup]]></string>
+    <string name="shizuku_activity_title">Shizuku Setup</string>
+    <string name="shizuku_instructions_title">Shizuku Setup Instructions</string>
+
+    <!-- Buttons -->
     <string name="activate_crosshair">Activate Crosshair</string>
-	<string name="activate_game_unlocker">Activate Game Unlocker</string>
-	<string name="catsmoker">CATSMOKER V1.5</string>
-	<string name="exit_app">Exit App</string>
-	<string name="open_website">Open Website</string>
-	<string name="file_path">path/to/your/file</string>
-	<string name="pubg_package_name">com.tencent.ig</string>
-	<string name="mid_480p">mid_480p_file</string>
-	<string name="q_480p">q_480p_file</string>
-	<string name="mid_540p">mid_540p_file</string>
-	<string name="q_540p">q_540p_file</string>
-	<string name="mid_720p">mid_720p_file</string>
-	<string name="q_720p">q_720p_file</string>
-	<string name="open_edit_quality">Open Edit Quality</string>
-	<string name="open_pubg">Open PUBG</string>
-	<string name="apply">Apply</string>
-	<string-array name="scope">
-		<item>com.activision.callofduty.shooter</item>
-		<item>com.activision.callofduty.warzone</item>
-		<item>com.garena.game.codm</item>
-		<item>com.tencent.tmgp.kr.codm</item>
-		<item>com.vng.codmvn</item>
-		<item>com.tencent.tmgp.cod</item>
-		<item>com.tencent.ig</item>
-		<item>com.pubg.imobile</item>
-		<item>com.pubg.krmobile</item>
-		<item>com.rekoo.pubgm</item>
-		<item>com.vng.pubgmobile</item>
-		<item>com.tencent.tmgp.pubgmhd</item>
-		<item>com.dts.freefiremax</item>
-		<item>com.dts.freefireth</item>
-		<item>com.epicgames.fortnite</item>
-		<item>com.YoStar.AetherGazer</item>
-		<item>com.ea.gp.apexlegendsmobilefps</item>
-		<item>com.ea.gp.fifamobile</item>
-		<item>com.epicgames.portal</item>
-		<item>com.gameloft.android.ANMP.GloftA9HM</item>
-		<item>com.garena.game.kgvn</item>
-		<item>com.garena.game.lmjx</item>
-		<item>com.levelinfinite.hotta.gp</item>
-		<item>com.levelinfinite.sgameGlobal</item>
-		<item>com.madfingergames.legends</item>
-		<item>com.miHoYo.GenshinImpact</item>
-		<item>com.mobile.legends</item>
-		<item>com.mobilelegends.mi</item>
-		<item>com.mojang.minecraftpe</item>
-		<item>com.netease.lztgglobal</item>
-		<item>com.ngame.allstar.eu</item>
-		<item>com.pearlabyss.blackdesertm.gl</item>
-		<item>com.pearlabyss.blackdesertm</item>
-		<item>com.proximabeta.mf.uamo</item>
-		<item>com.riotgames.league.teamfighttactics</item>
-		<item>com.riotgames.league.teamfighttacticstw</item>
-		<item>com.riotgames.league.teamfighttacticsvn</item>
-		<item>com.riotgames.league.wildrift</item>
-		<item>com.riotgames.league.wildrifttw</item>
-		<item>com.riotgames.league.wildriftvn</item>
-		<item>com.supercell.clashofclans</item>
-		<item>com.tencent.KiHan</item>
-		<item>com.tencent.lolm</item>
-		<item>com.tencent.tmgp.cf</item>
-		<item>com.tencent.tmgp.gnyx</item>
-		<item>com.tencent.tmgp.sgame</item>
-		<item>com.vng.mlbbvn</item>
-		<item>jp.konami.pesam</item>
-		<item>vng.games.revelation.mobile</item>
-	</string-array>
+    <string name="activate_game_unlocker">Activate Game Unlocker</string>
+    <string name="crosshair">Crosshair</string>
+    <string name="exit">Exit</string>
+    <string name="more_info">More Info</string>
+    <string name="use_root_and_lsposed">Use Root and LSPosed</string>
+    <string name="use_shizuku">Use Shizuku</string>
+    <string name="website">Website</string>
+    <string name="replace_file">Replace Save File</string>
+    <string name="select_game">Select a Game</string>
+    <string name="grant_shizuku_permission">Grant Shizuku Permission</string>
+    <string name="launch_game">Launch Game</string>
+    <string name="unlock_90_fps">Unlock 90 FPS</string>
+
+    <!-- Descriptions and Instructions -->
+    <string name="tap_the_button_below_to_enable_a_crosshair_overlay_for_better_aiming_in_games">
+        Tap the button below to enable a crosshair overlay for improved aiming in games.
+    </string>
+    <string name="more_info_text">
+        Catsmoker is a performance-boosting utility that enhances FPS in games.\n
+        It optimizes performance by spoofing your device model.\n
+        Additionally, it modifies game files for maximum efficiency.\n
+        Features a built-in crosshair overlay for better aiming.
+    </string>
+    <string name="root_lsposed_steps">
+        1. Verify Root Access: Ensure your device is rooted (use "Root Checker" app).\n
+        2. Install Magisk: Download and install Magisk Canary if not present.\n
+        3. (Optional) Install Shamiko: Helps hide root from certain apps.\n
+        4. Install LSPosed Module: In Magisk, install the LSPosed_mod module.\n
+        5. Open LSPosed Manager: Launch the LSPosed Manager app.\n
+        6. Enable Catsmoker: Go to Modules → Find Catsmoker → Enable it.\n
+        7. Auto-Added Games: Supported games are added automatically.\n
+        8. Force Stop Game: Manually stop the game to apply changes.
+    </string>
+    <string name="shizuku_instructions">
+    Follow these steps to set up Shizuku:\n
+    1. Install Shizuku from Play Store or GitHub.\n
+    2. Start Shizuku via ADB or root (e.g., \'adb shell sh /sdcard/Download/shizuku.sh\').\n
+    3. Grant permission when prompted.\n
+    4. Select a game and replace the save file.
+</string>
+    <string name="shizuku_wireless_steps">
+        1. Enable Wireless Debugging: Go to Developer Options → Enable "Wireless Debugging".\n
+        2. Pair with Shizuku: Open Shizuku, tap "Pair device with pairing code", enter code from Wireless Debugging.\n
+        3. Start Shizuku: Toggle Wireless Debugging if it doesn’t start automatically.
+    </string>
+    <string name="shizuku_adb_steps">
+        1. Install ADB: Download Google’s SDK Platform Tools, extract, and open terminal in folder.\n
+        2. Enable USB Debugging: Settings → About Phone → Tap "Build Number" 7 times → Developer Options → Enable USB Debugging.\n
+        3. Connect and Authorize: Connect phone via USB, run "adb devices", authorize on phone.\n
+        4. Start Shizuku: Run the provided command in terminal to activate Shizuku.
+    </string>
+
+    <!-- Messages -->
+    <string name="shizuku_not_running">Shizuku is not running. Please start it.</string>
+    <string name="permission_granted">Shizuku permission granted</string>
+    <string name="permission_denied">Shizuku permission denied</string>
+    <string name="game_not_installed">Game not installed</string>
+    <string name="unlock_success">90 FPS Unlocked Successfully</string>
+    <string name="unlock_failed">Failed to Unlock FPS</string>
+    <string name="delete_temp_failed">Failed to delete temporary file</string>
+    <string name="launch_game_failed">Unable to launch game</string>
+    <string name="unlocking_in_progress">Unlocking in progress…</string>
+    <string name="shizuku_command_failed">Shizuku command failed with exit code: %d</string>
+    <string name="error">Error: %s</string>
+    <string name="shizuku_binder_not_available">Shizuku binder not available</string>
+    <string name="shizuku_service_not_bound">Shizuku service not bound</string>
+    <string name="operation_timeout">Operation timed out. Please try again.</string>
+
+    <!-- Miscellaneous -->
+    <string name="no_pc_required_but_must_be_repeated_after_each_reboot">No PC required, but must be repeated after each reboot.</string>
+    <string name="starting_shizuku_via_wireless_debugging_android_11">Starting Shizuku via Wireless Debugging (Android 11+)</string>
+    <string name="requires_a_computer_must_be_repeated_after_each_reboot">Requires a computer. Must be repeated after each reboot.</string>
+    <string name="starting_shizuku_via_adb_android_10_and_below">Starting Shizuku via ADB (Android 10 and below)</string>
+    <string name="starting_shizuku">Starting Shizuku</string>
+
+    <!-- Scope for Xposed -->
+    <string-array name="scope">
+        <item>com.activision.callofduty.shooter</item>
+        <item>com.activision.callofduty.warzone</item>
+        <item>com.garena.game.codm</item>
+        <item>com.tencent.tmgp.kr.codm</item>
+        <item>com.vng.codmvn</item>
+        <item>com.tencent.tmgp.cod</item>
+        <item>com.tencent.ig</item>
+        <item>com.pubg.imobile</item>
+        <item>com.pubg.krmobile</item>
+        <item>com.rekoo.pubgm</item>
+        <item>com.vng.pubgmobile</item>
+        <item>com.tencent.tmgp.pubgmhd</item>
+        <item>com.dts.freefiremax</item>
+        <item>com.dts.freefireth</item>
+        <item>com.epicgames.fortnite</item>
+        <item>com.YoStar.AetherGazer</item>
+        <item>com.ea.gp.apexlegendsmobilefps</item>
+        <item>com.ea.gp.fifamobile</item>
+        <item>com.epicgames.portal</item>
+        <item>com.gameloft.android.ANMP.GloftA9HM</item>
+        <item>com.garena.game.kgvn</item>
+        <item>com.garena.game.lmjx</item>
+        <item>com.levelinfinite.hotta.gp</item>
+        <item>com.levelinfinite.sgameGlobal</item>
+        <item>com.madfingergames.legends</item>
+        <item>com.miHoYo.GenshinImpact</item>
+        <item>com.mobile.legends</item>
+        <item>com.mobilelegends.mi</item>
+        <item>com.mojang.minecraftpe</item>
+        <item>com.netease.lztgglobal</item>
+        <item>com.ngame.allstar.eu</item>
+        <item>com.pearlabyss.blackdesertm.gl</item>
+        <item>com.pearlabyss.blackdesertm</item>
+        <item>com.proximabeta.mf.uamo</item>
+        <item>com.riotgames.league.teamfighttactics</item>
+        <item>com.riotgames.league.teamfighttacticstw</item>
+        <item>com.riotgames.league.teamfighttacticsvn</item>
+        <item>com.riotgames.league.wildrift</item>
+        <item>com.riotgames.league.wildrifttw</item>
+        <item>com.riotgames.league.wildriftvn</item>
+        <item>com.supercell.clashofclans</item>
+        <item>com.tencent.KiHan</item>
+        <item>com.tencent.lolm</item>
+        <item>com.tencent.tmgp.cf</item>
+        <item>com.tencent.tmgp.gnyx</item>
+        <item>com.tencent.tmgp.sgame</item>
+        <item>com.vng.mlbbvn</item>
+        <item>jp.konami.pesam</item>
+        <item>vng.games.revelation.mobile</item>
+    </string-array>
 </resources>

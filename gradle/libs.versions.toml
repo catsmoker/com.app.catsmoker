@@ -1,20 +1,41 @@
-# libs.versions.toml
 [versions]
-material = "1.11.0"
-multidex = "2.0.1"
-xposed-api = "82"
-appcompat = "1.6.1"
-constraintlayout = "2.1.4"
-junit = "4.13.2"
-test-runner = "1.5.2"
-espresso-core = "3.5.1"
+agp = "8.8.2"              # Android Gradle Plugin
+annotation = "1.9.1"
+hiddenapibypass = "4.3"
+kotlin = "2.0.20"          # Kotlin
+coreKtx = "1.15.0"         # Core KTX
+appcompat = "1.7.0"        # AppCompat
+kotlinxCoroutinesAndroid = "1.7.3"
+material = "1.12.0"        # Material Components
+constraintlayout = "2.2.1" # ConstraintLayout
+multidex = "2.0.1"         # Multidex
+shizuku = "13.5.0"         # Shizuku API and Provider
+xposedApi = "82"           # Xposed API
+junit = "4.13.2"           # JUnit
+junitExt = "1.2.1"         # AndroidX JUnit
+espressoCore = "3.6.1"     # Espresso Core
+runner = "1.6.2"           # Test Runner
 
 [libraries]
-material = { module = "com.google.android.material:material", version.ref = "material" }
-multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
-xposed-api = { module = "de.robv.android.xposed:api", version.ref = "xposed-api" }
-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+hiddenapibypass = { module = "org.lsposed.hiddenapibypass:hiddenapibypass", version.ref = "hiddenapibypass" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
-junit = { module = "junit:junit", version.ref = "junit" }
-test-runner = { module = "androidx.test:runner", version.ref = "test-runner" }
-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
+multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
+
+api-v1350 = { module = "dev.rikka.shizuku:api", version = "13.5.0" }
+provider-v1350 = { module = "dev.rikka.shizuku:provider", version = "13.5.0" }
+
+api = { module = "de.robv.android.xposed:api", version.ref = "xposedApi" }
+
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitExt" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+runner = { module = "androidx.test:runner", version.ref = "runner" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

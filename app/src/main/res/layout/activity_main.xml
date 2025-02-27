@@ -1,48 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@drawable/gradient_background"
-    android:gravity="center_horizontal">
+    android:background="@color/purple_200"
+    android:padding="16dp">
 
-    <!-- App Title -->
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/catsmoker"
-        android:textSize="32sp"
-        android:textColor="@color/white"
+        android:text="@string/catsmoker_v1_5"
+        android:textSize="28sp"
         android:textStyle="bold"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="sans-serif-condensed" />
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"/>
 
-    <!-- Buttons -->
-    <Button
-        android:id="@+id/btnGameUnlocker"
-        style="@style/CustomButton"
-        android:text="@string/activate_game_unlocker" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRootLSPosed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/use_root_and_lsposed"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/teal_200"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnShizuku"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/use_shizuku"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/teal_200"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintTop_toBottomOf="@id/btnRootLSPosed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCrosshair"
-        style="@style/CustomButton"
-        android:text="@string/activate_crosshair" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/crosshair"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/teal_200"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintTop_toBottomOf="@id/btnShizuku"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
-    <Button
-        android:id="@+id/btnWebView"
-        style="@style/CustomButton"
-        android:text="@string/open_website" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnWebsite"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/website"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/teal_200"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintTop_toBottomOf="@id/btnCrosshair"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
-    <Button
-        android:id="@+id/btnEditQuality"
-        style="@style/CustomButton"
-        android:text="@string/open_edit_quality" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMoreInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/more_info"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/teal_200"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintTop_toBottomOf="@id/btnWebsite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnExit"
-        style="@style/CustomButton"
-        android:text="@string/exit_app" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/exit"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/teal_200"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintTop_toBottomOf="@id/btnMoreInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

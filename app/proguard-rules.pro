@@ -1,5 +1,12 @@
--keep class com.app.catsmoker.GameUnlocker
--keep class com.app.catsmoker.MyWebViewActivity
--keep class com.app.catsmoker.MainActivity
--keep class com.app.catsmoker.CrosshairOverlayService
--keep class com.app.catsmoker.EditQuality
+-keep class com.mb.catsmoker.service.UserService { *; }
+-keepclassmembers class com.mb.catsmoker.service.UserService {
+    public <init>(...);
+}
+
+# Keep annotations
+-keep @interface androidx.annotation.** { *; }
+
+# Don't strip native code
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
