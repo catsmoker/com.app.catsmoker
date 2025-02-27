@@ -10,3 +10,9 @@
 -keepclasseswithmembernames class * {
     native <methods>;
 }
+-keepattributes SourceFile,LineNumberTable
+-repackageclasses ''
+-dontshrink
+
+-keep class androidx.transition.** {*;}
+-keep class kotlinx.coroutines.android.** {*;}

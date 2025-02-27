@@ -12,6 +12,7 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        maven {url 'https://maven.aliyun.com/repository/public/'}
     }
 }
 
@@ -20,11 +21,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {url 'https://maven.aliyun.com/repository/public/'}
         maven { url = uri("https://api.xposed.info") } // For Xposed API
         maven { url = uri("https://jitpack.io") } // For Shizuku and other dependencies
         maven { url = uri("https://s01.oss.sonatype.org/content/repositories/releases") }
     }
 }
 
-rootProject.name = "CATSMOKER"
+rootProject.name = "Catsmoker"
 include(":app")

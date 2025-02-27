@@ -15,6 +15,11 @@ junit = "4.13.2"           # JUnit
 junitExt = "1.2.1"         # AndroidX JUnit
 espressoCore = "3.6.1"     # Espresso Core
 runner = "1.6.2"           # Test Runner
+activityKtx = "1.10.1"
+colorpickerview = "2.3.0"
+gradle = "7.3.1"
+junitVersion = "1.2.1"
+
 
 [libraries]
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
@@ -25,16 +30,20 @@ kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
-
 api-v1350 = { module = "dev.rikka.shizuku:api", version = "13.5.0" }
 provider-v1350 = { module = "dev.rikka.shizuku:provider", version = "13.5.0" }
-
 api = { module = "de.robv.android.xposed:api", version.ref = "xposedApi" }
-
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitExt" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 runner = { module = "androidx.test:runner", version.ref = "runner" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+colorpickerview = { module = "com.github.skydoves:colorpickerview", version.ref = "colorpickerview" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
