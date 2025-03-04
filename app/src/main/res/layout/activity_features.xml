@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Crosshair Overlay Section -->
+    <TextView
+        android:id="@+id/features_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Crosshair Overlay\nEnable a movable crosshair for better aiming in games."
+        android:textSize="16sp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_toggle_crosshair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activate Crosshair"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/features_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Magnification Overlay Section -->
+    <TextView
+        android:id="@+id/magnification_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Magnification Overlay\nEnable a scope-like overlay for zooming in games."
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_toggle_crosshair"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Spinner
+        android:id="@+id/magnification_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/magnification_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_toggle_magnification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activate Magnification"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/magnification_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
