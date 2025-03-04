@@ -6,7 +6,7 @@ For more information, visit the [GitHub repository](https://github.com/Xposed-Mo
 
 # Updated Pro Version
 
-For the New Pro version check here: [Store](https://catsmoker.github.io)
+For the New Pro version check here: [Store](https://catsmoker.sell.app/product/catsmoker-app?store=catsmoker&quantity=1)
 
 ## Features
 
@@ -25,7 +25,7 @@ For the New Pro version check here: [Store](https://catsmoker.github.io)
 
 ## Getting Started
 
-see the tutorial here: https://youtu.be/Ie0vEiQaQek
+see the tutorial : [here](https://youtu.be/Ie0vEiQaQek)
 
 ### Installation Guide
 
@@ -85,7 +85,7 @@ You can untick the games you don't want to spoof in the lsposed app. A reboot ma
 - **Epic Games**
   - `com.epicgames.fortnite`
 
-- and more...  [see here](https://github.com/catsmoker/com.app.catsmoker/releases/tag/5-1.5)
+- and more...  [see here](https://github.com/catsmoker/com.app.catsmoker/releases/tag/4-1.5)
 
 For any additional games you’d like to see supported, please open an issue with the APK name at [issues](https://github.com/catsmoker/com.app.catsmoker/issues).
 
