@@ -3,8 +3,8 @@ package com.app.catsmoker;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,34 +31,44 @@ public class ShizukuSAFActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shizukusaf);
         setTitle("Shizuku & SAF");
 
-        // Instructions TextView
+        // Instructions TextView using text block
         TextView instructions = findViewById(R.id.instructions);
-        String instructionText = "Starting Shizuku via Wireless Debugging (Android 11+)\n" +
-                "No PC required but must be repeated after each reboot.\n\n" +
-                "1. Enable Wireless Debugging\n" +
-                "   - Enable Developer Options and USB Debugging\n" +
-                "   - Open Wireless Debugging settings and enable it\n\n" +
-                "2. Pairing with Shizuku (Only Once)\n" +
-                "   - Start pairing in Shizuku\n" +
-                "   - Tap 'Pair device with pairing code' in Wireless Debugging\n" +
-                "   - Enter the pairing code from Shizuku’s notification\n\n" +
-                "3. Start Shizuku\n" +
-                "   - If it doesn’t start, toggle Wireless Debugging off and on\n\n" +
-                "---\n\n" +
-                "Starting Shizuku via ADB (Android 10 and below)\n" +
-                "Requires a PC and must be repeated after each reboot.\n\n" +
-                "1. Install ADB\n" +
-                "   - Download SDK Platform Tools from Google\n" +
-                "   - Open terminal and type 'adb' to verify\n\n" +
-                "2. Enable USB Debugging\n" +
-                "   - Settings → About Phone → Tap 'Build Number' 7 times\n" +
-                "   - Enable USB Debugging in Developer Options\n\n" +
-                "3. Connect to PC & Authorize ADB\n" +
-                "   - Run 'adb devices' in terminal\n" +
-                "   - Allow USB debugging on phone\n\n" +
-                "4. Start Shizuku\n" +
-                "   - Run: adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/files/start.sh\n" +
-                "   - Check Shizuku app for confirmation";
+        String instructionText = """
+                Starting Shizuku via Wireless Debugging (Android 11+)
+                No PC required but must be repeated after each reboot.
+
+                1. Enable Wireless Debugging
+                   - Enable Developer Options and USB Debugging
+                   - Open Wireless Debugging settings and enable it
+
+                2. Pairing with Shizuku (Only Once)
+                   - Start pairing in Shizuku
+                   - Tap 'Pair device with pairing code' in Wireless Debugging
+                   - Enter the pairing code from Shizuku’s notification
+
+                3. Start Shizuku
+                   - If it doesn’t start, toggle Wireless Debugging off and on
+
+                ---
+
+                Starting Shizuku via ADB (Android 10 and below)
+                Requires a PC and must be repeated after each reboot.
+
+                1. Install ADB
+                   - Download SDK Platform Tools from Google
+                   - Open terminal and type 'adb' to verify
+
+                2. Enable USB Debugging
+                   - Settings → About Phone → Tap 'Build Number' 7 times
+                   - Enable USB Debugging in Developer Options
+
+                3. Connect to PC & Authorize ADB
+                   - Run 'adb devices' in terminal
+                   - Allow USB debugging on phone
+
+                4. Start Shizuku
+                   - Run: adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/files/start.sh
+                   - Check Shizuku app for confirmation""";
         instructions.setText(instructionText);
 
         // Game Selection Spinner
@@ -95,7 +105,11 @@ public class ShizukuSAFActivity extends AppCompatActivity {
 
         btnStartSaf.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-            intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, Uri.parse(Environment.getExternalStorageDirectory().getPath()));
+            // EXTRA_INITIAL_URI is API 26+, so use it only if available
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI,
+                        Uri.parse(android.os.Environment.getExternalStorageDirectory().getPath()));
+            }
             safLauncher.launch(intent);
         });
     }

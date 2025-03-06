@@ -14,12 +14,12 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 @SuppressLint("DiscouragedPrivateApi")
 @SuppressWarnings("ConstantConditions")
-public class GameUnlocker implements IXposedHookLoadPackage {
+public class XposedModule implements IXposedHookLoadPackage {
 
-    private static final String TAG = GameUnlocker.class.getSimpleName();
+    private static final String TAG = XposedModule.class.getSimpleName();
 
     // Map of packages to spoof with OnePlus 12 properties
-    private static final Map<String, Map<String, String>> packagesToSpoof = new HashMap<String, Map<String, String>>() {{
+    private static final Map<String, Map<String, String>> packagesToSpoof = new HashMap<>() {{
         put("com.activision.callofduty.shooter", createOP12Props());
         put("com.activision.callofduty.warzone", createOP12Props());
         put("com.garena.game.codm", createOP12Props());

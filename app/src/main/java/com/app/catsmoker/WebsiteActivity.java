@@ -10,6 +10,8 @@ import android.net.NetworkCapabilities;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
@@ -20,15 +22,24 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class WebsiteActivity extends AppCompatActivity {
 
     private static final String HOME_URL = "https://catsmoker.github.io/";
+    private static final String PING_URL = "https://www.google.com"; // Reliable server for ping test
+    private static final int TIMEOUT_MS = 3000; // 3 seconds timeout
     private WebView webView;
     private ProgressBar progressBar;
+    private ExecutorService executorService;
+    private Handler mainHandler;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -36,6 +47,9 @@ public class WebsiteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_website);
         setTitle("CatSmoker Website");
+
+        executorService = Executors.newSingleThreadExecutor();
+        mainHandler = new Handler(Looper.getMainLooper());
 
         initializeViews();
         configureWebView();
@@ -79,20 +93,56 @@ public class WebsiteActivity extends AppCompatActivity {
     }
 
     private void loadWebViewContent() {
-        if (isConnectedToInternet()) {
-            webView.loadUrl(HOME_URL);
-        } else {
-            loadLocalErrorPage();
+        progressBar.setVisibility(View.VISIBLE);
+        checkInternetConnection(isConnected -> {
+            progressBar.setVisibility(View.GONE);
+            if (isConnected) {
+                webView.loadUrl(HOME_URL);
+            } else {
+                loadLocalErrorPage();
+            }
+        });
+    }
+
+    private void checkInternetConnection(InternetCheckCallback callback) {
+        // Step 1: Check network connectivity
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        boolean isNetworkAvailable = false;
+
+        if (connectivityManager != null) {
+            NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
+            isNetworkAvailable = capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+        }
+
+        if (!isNetworkAvailable) {
+            callback.onResult(false);
+            return;
+        }
+
+        // Step 2: Perform a ping test to confirm actual data access
+        executorService.execute(() -> {
+            boolean hasInternet = pingTest();
+            mainHandler.post(() -> callback.onResult(hasInternet));
+        });
+    }
+
+    private boolean pingTest() {
+        try {
+            URL url = new URL(PING_URL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("HEAD");
+            connection.setConnectTimeout(TIMEOUT_MS);
+            connection.setReadTimeout(TIMEOUT_MS);
+            int responseCode = connection.getResponseCode();
+            connection.disconnect();
+            return responseCode >= 200 && responseCode < 300; // HTTP success codes
+        } catch (IOException e) {
+            return false; // No actual internet access
         }
     }
 
-    private boolean isConnectedToInternet() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager != null) {
-            NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
-            return capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
-        }
-        return false;
+    private interface InternetCheckCallback {
+        void onResult(boolean isConnected);
     }
 
     private void loadLocalErrorPage() {
@@ -158,27 +208,25 @@ public class WebsiteActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         }
 
-        // Modern method for API 24+
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, android.webkit.WebResourceRequest request) {
             String url = request.getUrl().toString();
             if (isInternalUrl(url)) {
-                return false; // Load in WebView
+                return false;
             } else {
                 openExternalUrl(url);
-                return true; // Open in external browser
+                return true;
             }
         }
 
-        // Deprecated method for API < 24
         @Override
         @SuppressWarnings("deprecation")
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             if (isInternalUrl(url)) {
-                return false; // Load in WebView
+                return false;
             } else {
                 openExternalUrl(url);
-                return true; // Open in external browser
+                return true;
             }
         }
     }
@@ -187,6 +235,17 @@ public class WebsiteActivity extends AppCompatActivity {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             progressBar.setProgress(newProgress);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (executorService != null) {
+            executorService.shutdown();
+        }
+        if (webView != null) {
+            webView.destroy();
         }
     }
 }

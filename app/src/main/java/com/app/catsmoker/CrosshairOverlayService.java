@@ -23,6 +23,8 @@ public class CrosshairOverlayService extends Service {
     private WindowManager windowManager;
     private ImageView crosshairView;
     private WindowManager.LayoutParams params;
+
+    // Variables for touch handling
     private int initialX, initialY;
     private float initialTouchX, initialTouchY;
 
@@ -68,7 +70,7 @@ public class CrosshairOverlayService extends Service {
     private void setupOverlay() {
         windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         crosshairView = new ImageView(this);
-        crosshairView.setImageResource(R.drawable.aimcross); // Ensure drawable exists
+        crosshairView.setImageResource(R.drawable.scope2); // Ensure drawable exists
 
         int crosshairSize = 165;
         int layoutType = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ?

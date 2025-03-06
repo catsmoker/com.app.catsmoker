@@ -13,11 +13,13 @@ public class AboutActivity extends AppCompatActivity {
 
         // Set the about text
         TextView aboutText = findViewById(R.id.about_text);
-        String aboutContent = "About CatSmoker\n\n" +
-                "CatSmoker is a utility app designed to unlock higher FPS in games.\n" +
-                "It spoofs device models to optimize performance.\n" +
-                "It modifies game files for maximum performance.\n" +
-                "Includes more features to improve gaming.";
+        String aboutContent = """
+                About CatSmoker
+                
+                CatSmoker is a utility app designed to unlock higher FPS in games.
+                It spoofs device models to optimize performance.
+                It modifies game files for maximum performance.
+                Includes more features to improve gaming.""";
         aboutText.setText(aboutContent);
     }
 }

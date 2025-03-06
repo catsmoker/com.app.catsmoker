@@ -28,35 +28,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Magnification Overlay Section -->
+    <!-- Coming Soon Section -->
     <TextView
-        android:id="@+id/magnification_title"
+        android:id="@+id/coming_soon_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Magnification Overlay\nEnable a scope-like overlay for zooming in games."
+        android:text="Coming Soon\nMore features are on the way!"
         android:textSize="16sp"
         android:gravity="center"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/btn_toggle_crosshair"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <Spinner
-        android:id="@+id/magnification_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/magnification_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_toggle_magnification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Activate Magnification"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/magnification_spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

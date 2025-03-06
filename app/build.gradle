@@ -13,6 +13,7 @@ android {
         versionCode 4
         versionName "1.5"
 
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -44,10 +45,13 @@ dependencies {
     implementation libs.appcompat
     implementation libs.material
     implementation libs.constraintlayout
+    implementation libs.multidex
 
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+
+    compileOnly(libs.xposed.api)
 
 def shizuku_version = "13.1.5"
     implementation "dev.rikka.shizuku:api:$shizuku_version"

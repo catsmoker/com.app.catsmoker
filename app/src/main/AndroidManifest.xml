@@ -33,7 +33,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.DayNight.NoActionBar"
@@ -100,11 +100,6 @@
         <!-- Service -->
         <service
             android:name=".CrosshairOverlayService"
-            android:exported="false"
-            android:foregroundServiceType="specialUse" />
-
-        <service
-            android:name=".MagnificationOverlayService"
             android:exported="false"
             android:foregroundServiceType="specialUse" />
 

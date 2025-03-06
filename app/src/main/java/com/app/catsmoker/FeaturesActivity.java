@@ -2,12 +2,9 @@ package com.app.catsmoker;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +14,6 @@ public class FeaturesActivity extends AppCompatActivity {
 
     private static final String TAG = "FeaturesActivity";
     private MaterialButton btnToggleCrosshair;
-    private MaterialButton btnToggleMagnification;
-    private Spinner magnificationSpinner;
 
     private final androidx.activity.result.ActivityResultLauncher<Intent> overlayPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -37,22 +32,13 @@ public class FeaturesActivity extends AppCompatActivity {
 
         // Initialize UI elements
         btnToggleCrosshair = findViewById(R.id.btn_toggle_crosshair);
-        btnToggleMagnification = findViewById(R.id.btn_toggle_magnification);
-        magnificationSpinner = findViewById(R.id.magnification_spinner);
-
-        // Setup magnification spinner
-        String[] magnifications = {"2x", "4x"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, magnifications);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        magnificationSpinner.setAdapter(adapter);
 
         // Initial button states
-        updateCrosshairButtonState(isServiceRunning(CrosshairOverlayService.class));
-        updateMagnificationButtonState(isServiceRunning(MagnificationOverlayService.class));
+        updateCrosshairButtonState(isServiceRunning());
 
         // Crosshair toggle button
         btnToggleCrosshair.setOnClickListener(v -> {
-            if (isServiceRunning(CrosshairOverlayService.class)) {
+            if (isServiceRunning()) {
                 Log.d(TAG, "Deactivating crosshair");
                 stopService(new Intent(this, CrosshairOverlayService.class));
                 Toast.makeText(this, "Crosshair Deactivated", Toast.LENGTH_SHORT).show();
@@ -65,31 +51,7 @@ public class FeaturesActivity extends AppCompatActivity {
                     requestOverlayPermission();
                 }
             }
-            updateCrosshairButtonState(isServiceRunning(CrosshairOverlayService.class));
-        });
-
-        // Magnification toggle button
-        btnToggleMagnification.setOnClickListener(v -> {
-            if (isServiceRunning(MagnificationOverlayService.class)) {
-                Log.d(TAG, "Deactivating magnification overlay");
-                stopService(new Intent(this, MagnificationOverlayService.class));
-                Toast.makeText(this, "Magnification Deactivated", Toast.LENGTH_SHORT).show();
-            } else {
-                Log.d(TAG, "Activating magnification overlay");
-                if (Settings.canDrawOverlays(this)) {
-                    Intent intent = new Intent(this, MagnificationOverlayService.class);
-                    intent.putExtra("magnification", magnificationSpinner.getSelectedItem().toString());
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        startForegroundService(intent);
-                    } else {
-                        startService(intent);
-                    }
-                    Toast.makeText(this, "Magnification Activated (" + magnificationSpinner.getSelectedItem() + ")", Toast.LENGTH_SHORT).show();
-                } else {
-                    requestOverlayPermission();
-                }
-            }
-            updateMagnificationButtonState(isServiceRunning(MagnificationOverlayService.class));
+            updateCrosshairButtonState(isServiceRunning());
         });
     }
 
@@ -98,20 +60,15 @@ public class FeaturesActivity extends AppCompatActivity {
         Log.d(TAG, "Crosshair button state: " + (isRunning ? "Running" : "Not Running"));
     }
 
-    private void updateMagnificationButtonState(boolean isRunning) {
-        btnToggleMagnification.setText(isRunning ? "Deactivate Magnification" : "Activate Magnification");
-        Log.d(TAG, "Magnification button state: " + (isRunning ? "Running" : "Not Running"));
-    }
-
-    private boolean isServiceRunning(Class<?> serviceClass) {
+    private boolean isServiceRunning() {
         android.app.ActivityManager manager = (android.app.ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (android.app.ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                Log.d(TAG, serviceClass.getSimpleName() + " is running");
+            if (CrosshairOverlayService.class.getName().equals(service.service.getClassName())) {
+                Log.d(TAG, "CrosshairOverlayService is running");
                 return true;
             }
         }
-        Log.d(TAG, serviceClass.getSimpleName() + " is not running");
+        Log.d(TAG, "CrosshairOverlayService is not running");
         return false;
     }
 
@@ -124,7 +81,6 @@ public class FeaturesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        updateCrosshairButtonState(isServiceRunning(CrosshairOverlayService.class));
-        updateMagnificationButtonState(isServiceRunning(MagnificationOverlayService.class));
+        updateCrosshairButtonState(isServiceRunning());
     }
 }
