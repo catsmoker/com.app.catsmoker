@@ -10,6 +10,8 @@ import android.net.NetworkCapabilities;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
@@ -18,47 +20,46 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
-
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class MyWebViewActivity extends AppCompatActivity {
+public class WebsiteActivity extends AppCompatActivity {
 
     private static final String HOME_URL = "https://catsmoker.github.io/";
+    private static final String PING_URL = "https://www.google.com";
+    private static final int TIMEOUT_MS = 3000;
     private WebView webView;
-    private FirebaseAnalytics firebaseAnalytics;
     private ProgressBar progressBar;
+    private ExecutorService executorService;
+    private Handler mainHandler;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_view);
+        setContentView(R.layout.activity_website);
+        setTitle("CatSmoker Website");
 
-        initializeFirebaseAnalytics();
+        executorService = Executors.newSingleThreadExecutor();
+        mainHandler = new Handler(Looper.getMainLooper());
+
         initializeViews();
         configureWebView();
         handleBackButton();
         loadWebViewContent();
     }
 
-    private void initializeFirebaseAnalytics() {
-        try {
-            firebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        } catch (Exception e) {
-            Toast.makeText(this, "Failed to initialize Firebase Analytics", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void initializeViews() {
-        webView = findViewById(R.id.webView);
-        progressBar = findViewById(R.id.progressBar);
+        webView = findViewById(R.id.web_view);
+        progressBar = findViewById(R.id.progress_bar);
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -92,20 +93,55 @@ public class MyWebViewActivity extends AppCompatActivity {
     }
 
     private void loadWebViewContent() {
-        if (isConnectedToInternet()) {
-            webView.loadUrl(HOME_URL);
-        } else {
-            loadLocalErrorPage();
+        progressBar.setVisibility(View.VISIBLE);
+        checkInternetConnection(isConnected -> {
+            progressBar.setVisibility(View.GONE);
+            if (isConnected) {
+                webView.loadUrl(HOME_URL);
+            } else {
+                loadLocalErrorPage();
+            }
+        });
+    }
+
+    private void checkInternetConnection(InternetCheckCallback callback) {
+        // Step 1: Check network connectivity
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        boolean isNetworkAvailable = false;
+
+        if (connectivityManager != null) {
+            NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
+            isNetworkAvailable = capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+        }
+
+        if (!isNetworkAvailable) {
+            callback.onResult(false);
+            return;
+        }
+
+        executorService.execute(() -> {
+            boolean hasInternet = pingTest();
+            mainHandler.post(() -> callback.onResult(hasInternet));
+        });
+    }
+
+    private boolean pingTest() {
+        try {
+            URL url = new URL(PING_URL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("HEAD");
+            connection.setConnectTimeout(TIMEOUT_MS);
+            connection.setReadTimeout(TIMEOUT_MS);
+            int responseCode = connection.getResponseCode();
+            connection.disconnect();
+            return responseCode >= 200 && responseCode < 300;
+        } catch (IOException e) {
+            return false;
         }
     }
 
-    private boolean isConnectedToInternet() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager != null) {
-            NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
-            return capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
-        }
-        return false;
+    private interface InternetCheckCallback {
+        void onResult(boolean isConnected);
     }
 
     private void loadLocalErrorPage() {
@@ -117,7 +153,7 @@ public class MyWebViewActivity extends AppCompatActivity {
                 webView.loadDataWithBaseURL(null, htmlContent, "text/html", StandardCharsets.UTF_8.name(), null);
             }
         } catch (IOException e) {
-            Toast.makeText(this, "Failed to load local error page", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No internet and failed to load error page", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -138,7 +174,10 @@ public class MyWebViewActivity extends AppCompatActivity {
         String fileName = URLUtil.guessFileName(url, contentDisposition, mimetype);
 
         if (!fileName.contains(".")) {
-            fileName += "." + MimeTypeMap.getSingleton().getExtensionFromMimeType(mimetype);
+            String extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mimetype);
+            if (extension != null) {
+                fileName += "." + extension;
+            }
         }
 
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
@@ -151,20 +190,9 @@ public class MyWebViewActivity extends AppCompatActivity {
         DownloadManager downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         if (downloadManager != null) {
             downloadManager.enqueue(request);
-            Toast.makeText(this, "Download started...", Toast.LENGTH_SHORT).show();
-            logFirebaseEvent("download_file", fileName, mimetype);
+            Toast.makeText(this, "Download started: " + fileName, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "DownloadManager is unavailable. Cannot download the file.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void logFirebaseEvent(String itemId, String itemName, String contentType) {
-        if (firebaseAnalytics != null) {
-            Bundle bundle = new Bundle();
-            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, itemId);
-            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, itemName);
-            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, contentType);
-            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+            Toast.makeText(this, "DownloadManager unavailable", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -177,10 +205,21 @@ public class MyWebViewActivity extends AppCompatActivity {
         @Override
         public void onPageFinished(WebView view, String url) {
             progressBar.setVisibility(View.GONE);
-            logFirebaseEvent("web_view_page", url, "web_page");
         }
 
         @Override
+        public boolean shouldOverrideUrlLoading(WebView view, android.webkit.WebResourceRequest request) {
+            String url = request.getUrl().toString();
+            if (isInternalUrl(url)) {
+                return false;
+            } else {
+                openExternalUrl(url);
+                return true;
+            }
+        }
+
+        @Override
+        @SuppressWarnings("deprecation")
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             if (isInternalUrl(url)) {
                 return false;
@@ -195,6 +234,17 @@ public class MyWebViewActivity extends AppCompatActivity {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             progressBar.setProgress(newProgress);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (executorService != null) {
+            executorService.shutdown();
+        }
+        if (webView != null) {
+            webView.destroy();
         }
     }
 }

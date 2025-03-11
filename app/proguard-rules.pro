@@ -1,2 +1,6 @@
--keep class com.app.catsmoker.GameUnlocker
--keep class com.app.catsmoker.MyWebViewActivity
+-keep class com.app.catsmoker.AboutActivity
+-keep class com.app.catsmoker.MainActivity
+-keep class com.app.catsmoker.RootLSPosedActivity
+-keep class com.app.catsmoker.ShizukuSAFActivity
+-keep class com.app.catsmoker.FeaturesActivity
+-keep class com.app.catsmoker.XposedModule
