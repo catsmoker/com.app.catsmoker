@@ -63,30 +63,6 @@ You can untick the games you don't want to spoof in the lsposed app. A reboot ma
 
 **Note:** Device spoofing may violate the terms of service for some games or apps.
 
-## Supported Games
-
-- **Activision Games**
-  - `com.activision.callofduty.shooter`
-  - `com.activision.callofduty.warzone`
-  - `com.garena.game.codm`
-  - `com.tencent.tmgp.kr.codm`
-  - `com.vng.codmvn`
-  - `com.tencent.tmgp.cod`
-- **Tencent Games**
-  - `com.tencent.ig`
-  - `com.pubg.imobile`
-  - `com.pubg.krmobile`
-  - `com.rekoo.pubgm`
-  - `com.vng.pubgmobile`
-  - `com.tencent.tmgp.pubgmhd`
-- **Garena Games**
-  - `com.dts.freefiremax`
-  - `com.dts.freefireth`
-- **Epic Games**
-  - `com.epicgames.fortnite`
-
-- and more...  [see here](https://github.com/catsmoker/com.app.catsmoker/releases/tag/4-1.5)
-
 For any additional games you’d like to see supported, please open an issue with the APK name at [issues](https://github.com/catsmoker/com.app.catsmoker/issues).
 
 ## Note
