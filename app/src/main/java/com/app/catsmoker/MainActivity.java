@@ -13,14 +13,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Display device info
         TextView appInfo = findViewById(R.id.app_info);
         String info = "CatSmoker V1.5\n" +
                 "Processor: " + System.getProperty("os.arch") + "\n" +
                 "Model: " + Build.MODEL;
         appInfo.setText(info);
 
-        // Button setups
         setupButton(R.id.btn_root_lsposed, RootLSPosedActivity.class);
         setupButton(R.id.btn_shizuku, ShizukuSAFActivity.class);
         setupButton(R.id.btn_crosshair, FeaturesActivity.class);

@@ -34,8 +34,8 @@ import java.util.concurrent.Executors;
 public class WebsiteActivity extends AppCompatActivity {
 
     private static final String HOME_URL = "https://catsmoker.github.io/";
-    private static final String PING_URL = "https://www.google.com"; // Reliable server for ping test
-    private static final int TIMEOUT_MS = 3000; // 3 seconds timeout
+    private static final String PING_URL = "https://www.google.com";
+    private static final int TIMEOUT_MS = 3000;
     private WebView webView;
     private ProgressBar progressBar;
     private ExecutorService executorService;
@@ -119,7 +119,6 @@ public class WebsiteActivity extends AppCompatActivity {
             return;
         }
 
-        // Step 2: Perform a ping test to confirm actual data access
         executorService.execute(() -> {
             boolean hasInternet = pingTest();
             mainHandler.post(() -> callback.onResult(hasInternet));
@@ -135,9 +134,9 @@ public class WebsiteActivity extends AppCompatActivity {
             connection.setReadTimeout(TIMEOUT_MS);
             int responseCode = connection.getResponseCode();
             connection.disconnect();
-            return responseCode >= 200 && responseCode < 300; // HTTP success codes
+            return responseCode >= 200 && responseCode < 300;
         } catch (IOException e) {
-            return false; // No actual internet access
+            return false;
         }
     }
 

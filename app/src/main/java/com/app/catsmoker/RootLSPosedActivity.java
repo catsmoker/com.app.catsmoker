@@ -15,7 +15,6 @@ public class RootLSPosedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_lsposed);
 
-        // Instructions TextView
         TextView instructions = findViewById(R.id.instructions);
 
         String instructionText = """
@@ -48,12 +47,10 @@ public class RootLSPosedActivity extends AppCompatActivity {
 
         instructions.setText(instructionText);
 
-        // Status TextView
         TextView status = findViewById(R.id.status);
-        boolean isRooted = checkRootStatus(); // Placeholder for actual root check
+        boolean isRooted = checkRootStatus();
         status.setText(isRooted ? "Activated" : "Disabled");
 
-        // Button to refresh status or trigger manual check
         Button refreshButton = findViewById(R.id.btn_refresh);
         refreshButton.setOnClickListener(v -> {
             boolean updatedRootStatus = checkRootStatus();
@@ -61,18 +58,14 @@ public class RootLSPosedActivity extends AppCompatActivity {
             Toast.makeText(this, "Status refreshed", Toast.LENGTH_SHORT).show();
         });
 
-        // Button to install LSPosed
         Button installLSPosedButton = findViewById(R.id.btn_install_lsposed);
         installLSPosedButton.setOnClickListener(v -> {
-            // Open a browser or download manager to install LSPosed
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/LSPosed/LSPosed/releases"));
             startActivity(browserIntent);
         });
 
-        // Button to launch LSPosed Manager
         Button launchLSPosedButton = findViewById(R.id.btn_launch_lsposed);
         launchLSPosedButton.setOnClickListener(v -> {
-            // Attempt to launch LSPosed Manager
             Intent intent = getPackageManager().getLaunchIntentForPackage("org.lsposed.manager");
             if (intent != null) {
                 startActivity(intent);
@@ -82,9 +75,7 @@ public class RootLSPosedActivity extends AppCompatActivity {
         });
     }
 
-    // Placeholder method for root checking - implement actual logic as needed
     private boolean checkRootStatus() {
-        // This is a simulation. In a real app, use a root detection library like RootBeer
         try {
             Runtime.getRuntime().exec("su");
             return true;

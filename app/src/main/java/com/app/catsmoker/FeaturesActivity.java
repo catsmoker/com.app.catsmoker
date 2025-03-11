@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ public class FeaturesActivity extends AppCompatActivity {
 
     private static final String TAG = "FeaturesActivity";
     private MaterialButton btnToggleCrosshair;
+    private int selectedScopeResourceId = R.drawable.scope2;
 
     private final androidx.activity.result.ActivityResultLauncher<Intent> overlayPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -30,13 +32,12 @@ public class FeaturesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_features);
         setTitle("More Features");
 
-        // Initialize UI elements
         btnToggleCrosshair = findViewById(R.id.btn_toggle_crosshair);
 
-        // Initial button states
+        setupScopeSelection();
+
         updateCrosshairButtonState(isServiceRunning());
 
-        // Crosshair toggle button
         btnToggleCrosshair.setOnClickListener(v -> {
             if (isServiceRunning()) {
                 Log.d(TAG, "Deactivating crosshair");
@@ -45,7 +46,9 @@ public class FeaturesActivity extends AppCompatActivity {
             } else {
                 Log.d(TAG, "Activating crosshair");
                 if (Settings.canDrawOverlays(this)) {
-                    startService(new Intent(this, CrosshairOverlayService.class));
+                    Intent serviceIntent = new Intent(this, CrosshairOverlayService.class);
+                    serviceIntent.putExtra(CrosshairOverlayService.EXTRA_SCOPE_RESOURCE_ID, selectedScopeResourceId);
+                    startService(serviceIntent);
                     Toast.makeText(this, "Crosshair Activated", Toast.LENGTH_SHORT).show();
                 } else {
                     requestOverlayPermission();
@@ -53,6 +56,30 @@ public class FeaturesActivity extends AppCompatActivity {
             }
             updateCrosshairButtonState(isServiceRunning());
         });
+    }
+
+    private void setupScopeSelection() {
+        ImageView scope1 = findViewById(R.id.scope1);
+        ImageView scope2 = findViewById(R.id.scope2);
+        ImageView scope3 = findViewById(R.id.scope3);
+        ImageView scope4 = findViewById(R.id.scope4);
+
+        scope1.setOnClickListener(v -> selectScope(R.drawable.scope1));
+        scope2.setOnClickListener(v -> selectScope(R.drawable.scope2));
+        scope3.setOnClickListener(v -> selectScope(R.drawable.scope3));
+        scope4.setOnClickListener(v -> selectScope(R.drawable.scope4));
+    }
+
+    private void selectScope(int scopeResourceId) {
+        selectedScopeResourceId = scopeResourceId;
+        Toast.makeText(this, "Scope selected: " + scopeResourceId, Toast.LENGTH_SHORT).show();
+
+        if (isServiceRunning()) {
+            Intent serviceIntent = new Intent(this, CrosshairOverlayService.class);
+            serviceIntent.putExtra(CrosshairOverlayService.EXTRA_SCOPE_RESOURCE_ID, selectedScopeResourceId);
+            startService(serviceIntent);
+            Toast.makeText(this, "Crosshair updated", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void updateCrosshairButtonState(boolean isRunning) {

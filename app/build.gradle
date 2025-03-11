@@ -33,11 +33,17 @@ android {
     buildFeatures {
         viewBinding true
         buildConfig true
+        aidl true
     }
 
     lint {
         abortOnError false
         checkReleaseBuilds false
+    }
+    sourceSets {
+        main {
+            aidl.srcDirs 'src/main/aidl'
+        }
     }
 }
 
@@ -46,15 +52,17 @@ dependencies {
     implementation libs.material
     implementation libs.constraintlayout
     implementation libs.multidex
-
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+    implementation libs.activity
+    implementation libs.annotation
+    implementation libs.fragment
+    implementation libs.core
 
     compileOnly(libs.xposed.api)
 
-def shizuku_version = "13.1.5"
+    def shizuku_version = "12.1.0"
     implementation "dev.rikka.shizuku:api:$shizuku_version"
     implementation "dev.rikka.shizuku:provider:$shizuku_version"
-
 }

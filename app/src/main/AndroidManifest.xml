@@ -5,29 +5,30 @@
 
     <!-- Queries for Shizuku and browser intents -->
     <queries>
-        <package android:name="moe.shizuku.privileged.api" /> <!-- Shizuku support -->
-        <package android:name="com.android.vending" /> <!-- Play Store -->
+        <package android:name="moe.shizuku.privileged.api" />
+        <package android:name="com.android.vending" />
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="https" /> <!-- For website button -->
+            <data android:scheme="https" />
         </intent>
     </queries>
 
     <!-- Permissions -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Network status -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- Website access -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- File access -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- File modification -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage" /> <!-- Full storage access -->
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- Crosshair overlay -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- Background tasks -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" /> <!-- Required for specialUse -->
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- Install modules -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Optional: game features -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Optional: game features -->
-    <uses-permission android:name="moe.shizuku.manager.permission.API_V23" /> <!-- Shizuku permission -->
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="moe.shizuku.manager.permission.API_V23" />
 
     <application
         android:allowBackup="true"

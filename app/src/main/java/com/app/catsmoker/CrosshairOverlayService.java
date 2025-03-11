@@ -23,13 +23,12 @@ public class CrosshairOverlayService extends Service {
     private WindowManager windowManager;
     private ImageView crosshairView;
     private WindowManager.LayoutParams params;
-
-    // Variables for touch handling
     private int initialX, initialY;
     private float initialTouchX, initialTouchY;
 
     private static final int NOTIFICATION_ID = 1;
     private static final String CHANNEL_ID = "CrosshairServiceChannel";
+    public static final String EXTRA_SCOPE_RESOURCE_ID = "scope_resource_id";
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -41,7 +40,16 @@ public class CrosshairOverlayService extends Service {
         super.onCreate();
         Log.d(TAG, "Service created");
         startForegroundService();
-        setupOverlay();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(TAG, "Service started with startId: " + startId);
+
+        int scopeResourceId = intent.getIntExtra(EXTRA_SCOPE_RESOURCE_ID, R.drawable.scope2); // Default to scope2
+        setupOverlay(scopeResourceId);
+
+        return START_NOT_STICKY;
     }
 
     @SuppressLint("ForegroundServiceType")
@@ -59,7 +67,7 @@ public class CrosshairOverlayService extends Service {
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Crosshair Overlay")
                 .setContentText("Crosshair is active")
-                .setSmallIcon(android.R.drawable.ic_menu_view) // Placeholder; replace with your icon
+                .setSmallIcon(android.R.drawable.ic_menu_view)
                 .build();
 
         startForeground(NOTIFICATION_ID, notification);
@@ -67,10 +75,10 @@ public class CrosshairOverlayService extends Service {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private void setupOverlay() {
+    private void setupOverlay(int scopeResourceId) {
         windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         crosshairView = new ImageView(this);
-        crosshairView.setImageResource(R.drawable.scope2); // Ensure drawable exists
+        crosshairView.setImageResource(scopeResourceId);
 
         int crosshairSize = 165;
         int layoutType = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ?
@@ -108,12 +116,6 @@ public class CrosshairOverlayService extends Service {
                     return false;
             }
         });
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "Service started with startId: " + startId);
-        return START_NOT_STICKY; // Service stops when explicitly stopped
     }
 
     @Override

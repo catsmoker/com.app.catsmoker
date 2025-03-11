@@ -18,24 +18,59 @@ public class XposedModule implements IXposedHookLoadPackage {
 
     private static final String TAG = XposedModule.class.getSimpleName();
 
-    // Map of packages to spoof with OnePlus 12 properties
-    private static final Map<String, Map<String, String>> packagesToSpoof = new HashMap<>() {{
-        put("com.activision.callofduty.shooter", createOP12Props());
-        put("com.activision.callofduty.warzone", createOP12Props());
-        put("com.garena.game.codm", createOP12Props());
-        put("com.tencent.tmgp.kr.codm", createOP12Props());
-        put("com.vng.codmvn", createOP12Props());
-        put("com.tencent.tmgp.cod", createOP12Props());
-        put("com.tencent.ig", createOP12Props());
-        put("com.pubg.imobile", createOP12Props());
-        put("com.pubg.krmobile", createOP12Props());
-        put("com.rekoo.pubgm", createOP12Props());
-        put("com.vng.pubgmobile", createOP12Props());
-        put("com.tencent.tmgp.pubgmhd", createOP12Props());
-        put("com.dts.freefiremax", createOP12Props());
-        put("com.dts.freefireth", createOP12Props());
-        put("com.epicgames.fortnite", createOP12Props());
-    }};
+    private static final Map<String, Map<String, String>> packagesToSpoof = new HashMap<>();
+
+    static {
+        Map<String, String> op12Props = createOP12Props();
+        packagesToSpoof.put("com.activision.callofduty.shooter", op12Props);
+        packagesToSpoof.put("com.activision.callofduty.warzone", op12Props);
+        packagesToSpoof.put("com.garena.game.codm", op12Props);
+        packagesToSpoof.put("com.tencent.tmgp.kr.codm", op12Props);
+        packagesToSpoof.put("com.vng.codmvn", op12Props);
+        packagesToSpoof.put("com.tencent.tmgp.cod", op12Props);
+        packagesToSpoof.put("com.tencent.ig", op12Props);
+        packagesToSpoof.put("com.pubg.imobile", op12Props);
+        packagesToSpoof.put("com.pubg.krmobile", op12Props);
+        packagesToSpoof.put("com.rekoo.pubgm", op12Props);
+        packagesToSpoof.put("com.vng.pubgmobile", op12Props);
+        packagesToSpoof.put("com.tencent.tmgp.pubgmhd", op12Props);
+        packagesToSpoof.put("com.dts.freefiremax", op12Props);
+        packagesToSpoof.put("com.dts.freefireth", op12Props);
+        packagesToSpoof.put("com.epicgames.fortnite", op12Props);
+        packagesToSpoof.put("com.ea.gp.fifamobile", op12Props);
+        packagesToSpoof.put("com.gameloft.android.ANMP.GloftA9HM", op12Props);
+        packagesToSpoof.put("com.madfingergames.legends", op12Props);
+        packagesToSpoof.put("com.pearlabyss.blackdesertm", op12Props);
+        packagesToSpoof.put("com.pearlabyss.blackdesertm.gl", op12Props);
+        packagesToSpoof.put("com.netease.lztgglobal", op12Props);
+        packagesToSpoof.put("com.riotgames.league.wildrift", op12Props);
+        packagesToSpoof.put("com.riotgames.league.wildrifttw", op12Props);
+        packagesToSpoof.put("com.riotgames.league.wildriftvn", op12Props);
+        packagesToSpoof.put("com.riotgames.league.teamfighttactics", op12Props);
+        packagesToSpoof.put("com.riotgames.league.teamfighttacticstw", op12Props);
+        packagesToSpoof.put("com.riotgames.league.teamfighttacticsvn", op12Props);
+        packagesToSpoof.put("com.ngame.allstar.eu", op12Props);
+        packagesToSpoof.put("com.mojang.minecraftpe", op12Props);
+        packagesToSpoof.put("com.YoStar.AetherGazer", op12Props);
+        packagesToSpoof.put("com.miHoYo.GenshinImpact", op12Props);
+        packagesToSpoof.put("com.garena.game.lmjx", op12Props);
+        packagesToSpoof.put("com.epicgames.portal", op12Props);
+        packagesToSpoof.put("com.tencent.lolm", op12Props);
+        packagesToSpoof.put("jp.konami.pesam", op12Props);
+        packagesToSpoof.put("com.ea.gp.apexlegendsmobilefps", op12Props);
+        packagesToSpoof.put("com.mobilelegends.mi", op12Props);
+        packagesToSpoof.put("com.levelinfinite.hotta.gp", op12Props);
+        packagesToSpoof.put("com.supercell.clashofclans", op12Props);
+        packagesToSpoof.put("com.vng.mlbbvn", op12Props);
+        packagesToSpoof.put("com.levelinfinite.sgameGlobal", op12Props);
+        packagesToSpoof.put("com.tencent.tmgp.sgame", op12Props);
+        packagesToSpoof.put("com.mobile.legends", op12Props);
+        packagesToSpoof.put("com.proximabeta.mf.uamo", op12Props);
+        packagesToSpoof.put("com.tencent.KiHan", op12Props);
+        packagesToSpoof.put("com.tencent.tmgp.cf", op12Props);
+        packagesToSpoof.put("com.tencent.tmgp.gnyx", op12Props);
+        packagesToSpoof.put("com.netease.newspike", op12Props);
+    }
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
