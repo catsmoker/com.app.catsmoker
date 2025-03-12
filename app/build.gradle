@@ -65,4 +65,9 @@ dependencies {
     def shizuku_version = "12.1.0"
     implementation "dev.rikka.shizuku:api:$shizuku_version"
     implementation "dev.rikka.shizuku:provider:$shizuku_version"
+
+    implementation libs.roottools
+    // Load all AARs from libs folder
+//    implementation(files("RootTools.aar"))
+//    implementation(files("RootShell.aar"))
 }
