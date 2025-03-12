@@ -1,6 +1,8 @@
 -keep class com.app.catsmoker.AboutActivity
 -keep class com.app.catsmoker.MainActivity
 -keep class com.app.catsmoker.RootLSPosedActivity
--keep class com.app.catsmoker.ShizukuSAFActivity
+-keep class com.app.catsmoker.ShizukuActivity
 -keep class com.app.catsmoker.FeaturesActivity
+-keep class com.app.catsmoker.CrosshairOverlayService
+-keep class com.app.catsmoker.WebsiteActivity
 -keep class com.app.catsmoker.XposedModule
