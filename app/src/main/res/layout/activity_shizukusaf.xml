@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:text="Instructions go here..."
+            android:textColor="@android:color/black"
+            android:text="Follow these instructions carefully..."
             android:padding="8dp"/>
     </ScrollView>
 
@@ -28,6 +29,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
+        android:padding="8dp"
+        android:background="@android:drawable/editbox_background"
         app:layout_constraintBottom_toTopOf="@id/btn_start_shizuku"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -37,6 +40,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Start Shizuku"
+        android:textAllCaps="false"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_replace_sav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_replace_sav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Replace Active.sav"
+        android:textAllCaps="false"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:textColor="@android:color/white"
         android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@id/btn_start_saf"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,11 +65,13 @@
         android:id="@+id/btn_start_saf"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
         android:text="Start SAF"
+        android:textAllCaps="false"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="120dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
