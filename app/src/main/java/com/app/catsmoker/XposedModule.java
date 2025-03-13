@@ -5,8 +5,7 @@ import android.os.Build;
 import android.util.Log;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XposedBridge;
@@ -18,97 +17,85 @@ public class XposedModule implements IXposedHookLoadPackage {
 
     private static final String TAG = XposedModule.class.getSimpleName();
 
-    private static final Map<String, Map<String, String>> packagesToSpoof = new HashMap<>();
-
-    static {
-        Map<String, String> op12Props = createOP12Props();
-        packagesToSpoof.put("com.activision.callofduty.shooter", op12Props);
-        packagesToSpoof.put("com.activision.callofduty.warzone", op12Props);
-        packagesToSpoof.put("com.garena.game.codm", op12Props);
-        packagesToSpoof.put("com.tencent.tmgp.kr.codm", op12Props);
-        packagesToSpoof.put("com.vng.codmvn", op12Props);
-        packagesToSpoof.put("com.tencent.tmgp.cod", op12Props);
-        packagesToSpoof.put("com.tencent.ig", op12Props);
-        packagesToSpoof.put("com.pubg.imobile", op12Props);
-        packagesToSpoof.put("com.pubg.krmobile", op12Props);
-        packagesToSpoof.put("com.rekoo.pubgm", op12Props);
-        packagesToSpoof.put("com.vng.pubgmobile", op12Props);
-        packagesToSpoof.put("com.tencent.tmgp.pubgmhd", op12Props);
-        packagesToSpoof.put("com.dts.freefiremax", op12Props);
-        packagesToSpoof.put("com.dts.freefireth", op12Props);
-        packagesToSpoof.put("com.epicgames.fortnite", op12Props);
-        packagesToSpoof.put("com.ea.gp.fifamobile", op12Props);
-        packagesToSpoof.put("com.gameloft.android.ANMP.GloftA9HM", op12Props);
-        packagesToSpoof.put("com.madfingergames.legends", op12Props);
-        packagesToSpoof.put("com.pearlabyss.blackdesertm", op12Props);
-        packagesToSpoof.put("com.pearlabyss.blackdesertm.gl", op12Props);
-        packagesToSpoof.put("com.netease.lztgglobal", op12Props);
-        packagesToSpoof.put("com.riotgames.league.wildrift", op12Props);
-        packagesToSpoof.put("com.riotgames.league.wildrifttw", op12Props);
-        packagesToSpoof.put("com.riotgames.league.wildriftvn", op12Props);
-        packagesToSpoof.put("com.riotgames.league.teamfighttactics", op12Props);
-        packagesToSpoof.put("com.riotgames.league.teamfighttacticstw", op12Props);
-        packagesToSpoof.put("com.riotgames.league.teamfighttacticsvn", op12Props);
-        packagesToSpoof.put("com.ngame.allstar.eu", op12Props);
-        packagesToSpoof.put("com.mojang.minecraftpe", op12Props);
-        packagesToSpoof.put("com.YoStar.AetherGazer", op12Props);
-        packagesToSpoof.put("com.miHoYo.GenshinImpact", op12Props);
-        packagesToSpoof.put("com.garena.game.lmjx", op12Props);
-        packagesToSpoof.put("com.epicgames.portal", op12Props);
-        packagesToSpoof.put("com.tencent.lolm", op12Props);
-        packagesToSpoof.put("jp.konami.pesam", op12Props);
-        packagesToSpoof.put("com.ea.gp.apexlegendsmobilefps", op12Props);
-        packagesToSpoof.put("com.mobilelegends.mi", op12Props);
-        packagesToSpoof.put("com.levelinfinite.hotta.gp", op12Props);
-        packagesToSpoof.put("com.supercell.clashofclans", op12Props);
-        packagesToSpoof.put("com.vng.mlbbvn", op12Props);
-        packagesToSpoof.put("com.levelinfinite.sgameGlobal", op12Props);
-        packagesToSpoof.put("com.tencent.tmgp.sgame", op12Props);
-        packagesToSpoof.put("com.mobile.legends", op12Props);
-        packagesToSpoof.put("com.proximabeta.mf.uamo", op12Props);
-        packagesToSpoof.put("com.tencent.KiHan", op12Props);
-        packagesToSpoof.put("com.tencent.tmgp.cf", op12Props);
-        packagesToSpoof.put("com.tencent.tmgp.gnyx", op12Props);
-        packagesToSpoof.put("com.netease.newspike", op12Props);
-    }
+    // Packages to spoof as OnePlus 12
+    private static final String[] packagesToSpoof = {
+        "com.activision.callofduty.shooter",
+        "com.activision.callofduty.warzone",
+        "com.garena.game.codm",
+        "com.tencent.tmgp.kr.codm",
+        "com.vng.codmvn",
+        "com.tencent.tmgp.cod",
+        "com.tencent.ig",
+        "com.pubg.imobile",
+        "com.pubg.krmobile",
+        "com.rekoo.pubgm",
+        "com.vng.pubgmobile",
+        "com.tencent.tmgp.pubgmhd",
+        "com.dts.freefiremax",
+        "com.dts.freefireth",
+        "com.epicgames.fortnite",
+        "com.ea.gp.fifamobile",
+        "com.gameloft.android.ANMP.GloftA9HM",
+        "com.madfingergames.legends",
+        "com.pearlabyss.blackdesertm",
+        "com.pearlabyss.blackdesertm.gl",
+        "com.netease.lztgglobal",
+        "com.riotgames.league.wildrift",
+        "com.riotgames.league.wildrifttw",
+        "com.riotgames.league.wildriftvn",
+        "com.riotgames.league.teamfighttactics",
+        "com.riotgames.league.teamfighttacticstw",
+        "com.riotgames.league.teamfighttacticsvn",
+        "com.ngame.allstar.eu",
+        "com.mojang.minecraftpe",
+        "com.YoStar.AetherGazer",
+        "com.miHoYo.GenshinImpact",
+        "com.garena.game.lmjx",
+        "com.epicgames.portal",
+        "com.tencent.lolm",
+        "jp.konami.pesam",
+        "com.ea.gp.apexlegendsmobilefps",
+        "com.mobilelegends.mi",
+        "com.levelinfinite.hotta.gp",
+        "com.supercell.clashofclans",
+        "com.vng.mlbbvn",
+        "com.levelinfinite.sgameGlobal",
+        "com.tencent.tmgp.sgame",
+        "com.mobile.legends",
+        "com.proximabeta.mf.uamo",
+        "com.tencent.KiHan",
+        "com.tencent.tmgp.cf",
+        "com.tencent.tmgp.gnyx",
+        "com.netease.newspike"
+    };
 
     @Override
-    public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) {
-        String packageName = loadPackageParam.packageName;
+    public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
+        String packageName = lpparam.packageName;
 
-        if (packagesToSpoof.containsKey(packageName)) {
-            Map<String, String> propsToChange = packagesToSpoof.get(packageName);
-            if (propsToChange != null) {
-                spoofProperties(propsToChange);
-                XposedBridge.log("Spoofed " + packageName + " as OnePlus 12");
-            }
+        // Check if the package is in the list to spoof
+        if (Arrays.asList(packagesToSpoof).contains(packageName)) {
+            spoofOnePlus12();
+            XposedBridge.log("Spoofed " + packageName + " as OnePlus 12");
         }
     }
 
-    private static void spoofProperties(Map<String, String> properties) {
-        for (Map.Entry<String, String> entry : properties.entrySet()) {
-            setPropValue(entry.getKey(), entry.getValue());
-        }
+    // Method to spoof as OnePlus 12
+    private static void spoofOnePlus12() {
+        setPropValue("MANUFACTURER", "OnePlus");
+        setPropValue("MODEL", "PJD110");
     }
 
-    private static void setPropValue(String key, String value) {
+    // Generic method to set Build properties
+    private static void setPropValue(String key, Object value) {
         try {
-            Log.d(TAG, "Setting property " + key + " to " + value);
+            Log.d(TAG, "Defining prop " + key + " to " + value.toString());
             Field field = Build.class.getDeclaredField(key);
             field.setAccessible(true);
             field.set(null, value);
             field.setAccessible(false);
         } catch (NoSuchFieldException | IllegalAccessException e) {
-            String errorMessage = "Failed to set property: " + key + " to " + value;
-            Log.e(TAG, errorMessage, e);
-            XposedBridge.log(errorMessage + "\n" + Log.getStackTraceString(e));
+            XposedBridge.log("Failed to set prop: " + key + "\n" + Log.getStackTraceString(e));
         }
-    }
-
-    private static Map<String, String> createOP12Props() {
-        Map<String, String> props = new HashMap<>();
-        props.put("MANUFACTURER", "OnePlus");
-        props.put("MODEL", "PJD110");
-        return props;
     }
 }
